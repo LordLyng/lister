@@ -5,16 +5,23 @@ import { Item } from "../firebase/firebase.models";
 interface Props {
   items: Item[];
   removeItem: (id: string) => Promise<void>;
-  editItem: (id: string, text: string) => Promise<void>;
+  editItem: (item: Item) => Promise<void>;
+  deleteItemsOnChecked: boolean;
 }
 
-export const AppList = ({ items, removeItem, editItem }: Props) => {
-   return (
+export const AppList = ({
+  items,
+  removeItem,
+  editItem,
+  deleteItemsOnChecked,
+}: Props) => {
+  return (
     <Stack>
       {items.map((item) => (
         <Stack key={item.id}>
           <Divider />
           <AppListItem
+            deleteItemsOnChecked={deleteItemsOnChecked}
             item={item}
             removeItem={removeItem}
             editIten={editItem}

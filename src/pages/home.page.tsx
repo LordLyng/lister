@@ -8,16 +8,17 @@ import { useAppTitle } from "../utils/app-title.hook";
 export const HomePage = () => {
   const { data, deleteItem, editItem } =
     useFirestoreCollection<Item>("indkoeb");
-  const {setTitle} = useAppTitle();
+  const { setTitle } = useAppTitle();
   setTitle("Indkøb");
 
   return (
     <Stack>
       <AddItem />
       <AppList
+        deleteItemsOnChecked={true}
         items={data}
         removeItem={deleteItem}
-        editItem={(id, text) => editItem({ id, text })}
+        editItem={(item) => editItem(item)}
       />
     </Stack>
   );

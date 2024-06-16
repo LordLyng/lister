@@ -21,9 +21,10 @@ export const ListPage = () => {
     <Stack>
       <AddItem listName={list.collectionName} />
       <AppList
+        deleteItemsOnChecked={list.deleteOnChecked}
         items={data}
         removeItem={deleteItem}
-        editItem={(id, text) => editItem({ id, text })}
+        editItem={(item) => editItem(item)}
       />
     </Stack>
   );

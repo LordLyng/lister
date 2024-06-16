@@ -17,17 +17,19 @@ export const AppList = ({
 }: Props) => {
   return (
     <Stack>
-      {items.map((item) => (
-        <Stack key={item.id}>
-          <Divider />
-          <AppListItem
-            deleteItemsOnChecked={deleteItemsOnChecked}
-            item={item}
-            removeItem={removeItem}
-            editIten={editItem}
-          />
-        </Stack>
-      ))}
+      {items
+        .sort((x, y) => (x.checked === y.checked ? 0 : x.checked ? 1 : -1))
+        .map((item) => (
+          <Stack key={item.id}>
+            <Divider />
+            <AppListItem
+              deleteItemsOnChecked={deleteItemsOnChecked}
+              item={item}
+              removeItem={removeItem}
+              editIten={editItem}
+            />
+          </Stack>
+        ))}
     </Stack>
   );
 };
